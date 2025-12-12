@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <audio id="background-music" src="audio/Falling.mp3" loop></audio>
+    <div id="floating-music-player" class="music-player">
+        <audio id="audio-player" src="audio/Falling.mp3" loop></audio>
+        <div class="player-controls">
+            <span class="music-title">F. - Falling.mp3</span>
+            <div class="controls-group">
+                <button id="play-pause-button" class="player-button">
+                    <span class="icon-play">▶</span>
+                </button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="Control de Volumen">
+            </div>
+        </div>
+    </div>
     <div id="loading-screen">
         <div class="loader-content">
             <span class="loader-text">Loading...</span>
@@ -108,7 +119,7 @@
                     <p>Hola.</p>
                     <ul>
                         <li>✨ *Música Favorita:* rock y metal *</li>
-                        <li>💖 *Citas Favoritas:*  "Tenemos tantas cosas y tantas oportunidades que ya ni siquiera sabemos que nos importa. "</li>
+                        <li>💖 *Citas Favoritas:* "Tenemos tantas cosas y tantas oportunidades que ya ni siquiera sabemos que nos importa. "</li>
                         <li>💻 *Estado:* Ocupada siempre.</li>
                     </ul>
                 </section>
@@ -209,10 +220,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
