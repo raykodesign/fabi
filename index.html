@@ -7,25 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="player-drawer" class="player-container">
-        <button id="toggle-player" class="toggle-btn">
-          <span class="arrow">▼</span> </button>
-        
-        <div id="floating-music-player" class="music-player">
-            <div class="player-design"></div> 
+    <button id="toggle-player-btn" class="floating-toggle">
+        <span id="toggle-icon">🎵</span>
+    </button>
+    
+    <div id="floating-music-player" class="music-player hidden-player">
+        <div class="player-content">
+            <div class="music-info">
+                <marquee id="music-title" behavior="scroll" direction="left">Selecciona una canción</marquee>
+            </div>
             
-            <audio id="audio-player" src="audio/Paulo Londra - Adan y Eva.mp3" loop></audio>
+            <audio id="audio-player" src="" loop></audio>
+            
             <div class="player-controls">
-                <span class="music-title">Paulo Londra - Adan y Eva</span>
-                <div class="controls-group">
+                <div class="main-buttons">
+                    <button id="prev-song" class="control-btn">⏮</button>
                     <button id="play-pause-button" class="player-button">
-                        <span class="icon-play">▶</span>
+                        <span id="play-icon">▶</span>
                     </button>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="Control de Volumen">
+                    <button id="next-song" class="control-btn">⏭</button>
                 </div>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
             </div>
         </div>
-        </div>
+    </div>
     <div id="loading-screen">
         <div class="loader-content">
             <span class="loader-text">Loading...</span>
@@ -116,11 +121,6 @@
                             <span>Gaby</span>
                             <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-item">
-                            <img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif" alt="Avatar Amigo 3">
-                            <span>Shelby</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
                     </div>
                 </section>
             </div>
@@ -196,11 +196,6 @@
                             <span>Gaby</span>
                             <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-item">
-                            <img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif" alt="Avatar Amigo 3">
-                            <span>Shelby</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
                     </div>
                 </section>
             </div>
@@ -237,7 +232,5 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
 
 
