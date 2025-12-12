@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XatSpace Fabi</title>
+    <title>Mi Xatspace Dulce</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,7 +36,7 @@
                         <div class="profile-avatar">
                             <img src="https://xatimg.com/image/9IyqJYfTIEtM.png" alt="Avatar de usuario">
                         </div>
-                        <p>Hola.</p>
+                        <p>Hola soy fabi y recuerda siempre que me caes mal por favor no me hables y si tienes married o novia, pantallazo pa la novia por perro.</p>
                      
                     </section>
                 </main>
@@ -100,13 +100,24 @@
             <div id="gallery-section" class="content-section hidden">
                 <section class="image-gallery section-style-2">
                     <h2>🖼️ Mi Galería de Fotos 🖼️</h2>
-                    <div class="gallery-grid">
-                        <img src="https://xatimg.com/image/tKhOWquLIWnV.jpg" alt="Foto 1">
-                        <img src="https://xatimg.com/image/l1lKQBudgQyM.jpg" alt="Foto 2">
-                        <img src="https://xatimg.com/image/khkKIGuWO5Mc.jpg" alt="Foto 3">
-                        <img src="https://xatimg.com/image/B08y5KxSLntC.jpg" alt="Foto 4">
+                    
+                    <div class="carousel-container">
+                        <button class="carousel-button prev-button" aria-label="Anterior">
+                            &lt;
+                        </button>
+                        
+                        <div class="gallery-track">
+                            <img src="https://xatimg.com/image/tKhOWquLIWnV.jpg" alt="Foto 1" class="gallery-slide current-slide">
+                            <img src="https://xatimg.com/image/l1lKQBudgQyM.jpg" alt="Foto 2" class="gallery-slide hidden-slide">
+                            <img src="https://xatimg.com/image/khkKIGuWO5Mc.jpg" alt="Foto 3" class="gallery-slide hidden-slide">
+                            <img src="https://xatimg.com/image/B08y5KxSLntC.jpg" alt="Foto 4" class="gallery-slide hidden-slide">
+                        </div>
+                        
+                        <button class="carousel-button next-button" aria-label="Siguiente">
+                            &gt;
+                        </button>
                     </div>
-                </section>
+                    </section>
             </div>
             
         </div>
@@ -117,6 +128,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
-
