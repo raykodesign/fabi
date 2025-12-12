@@ -1,158 +1,113 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Xatspace-like page loaded with dynamic tab switching!');
-
+    // --- 1. LÓGICA DE PESTAÑAS Y CARGA ---
     const navLinks = document.querySelectorAll('.navbar li a');
     const contentSections = document.querySelectorAll('.content-section');
     const container = document.querySelector('.container');
     const loadingScreen = document.getElementById('loading-screen'); 
 
-    // Función principal para cambiar la pestaña SIN SALIR de la página
     const switchTab = (targetId) => {
-        // 1. Ocultar TODAS las secciones (añadiendo la clase 'hidden')
-        contentSections.forEach(section => {
-            section.classList.add('hidden'); 
-        });
-
-        // 2. Mostrar la sección deseada (quitando la clase 'hidden')
+        contentSections.forEach(section => section.classList.add('hidden'));
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
-            // Usamos un pequeño timeout para asegurar que el DOM responda
-            setTimeout(() => {
-                 targetSection.classList.remove('hidden'); 
-            }, 50); 
+            setTimeout(() => { targetSection.classList.remove('hidden'); }, 50); 
         }
-
-        // 3. Actualizar el estado 'active' en la navegación (estilo visual)
         navLinks.forEach(link => link.classList.remove('active'));
         const activeLink = document.querySelector(`[data-target="${targetId}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
+        if (activeLink) activeLink.classList.add('active');
     };
-    
-    // --- Lógica del Carrusel de la Galería (CORREGIDA CON COMPROBACIONES DE SEGURIDAD) ---
-    const galleryTrack = document.querySelector('.gallery-track');
-    const slides = document.querySelectorAll('.gallery-slide');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-    let currentSlideIndex = 0;
-    
-    // SOLO EJECUTAR LA LÓGICA SI TENEMOS SUFICIENTES SLIDES Y AMBOS BOTONES
-    if (slides.length > 0 && prevButton && nextButton) { 
-        
-        // Función para mostrar la diapositiva específica
-        const moveToSlide = (targetIndex) => {
-            // 1. Ocultar la diapositiva actual
-            slides[currentSlideIndex].classList.remove('current-slide');
-            slides[currentSlideIndex].classList.add('hidden-slide');
-            
-            // 2. Actualizar el índice
-            currentSlideIndex = targetIndex;
-            
-            // 3. Mostrar la nueva diapositiva
-            slides[currentSlideIndex].classList.remove('hidden-slide');
-            slides[currentSlideIndex].classList.add('current-slide');
-        };
 
-        // Event Listener para el botón Siguiente
-        nextButton.addEventListener('click', () => {
-            let nextIndex = currentSlideIndex + 1;
-            if (nextIndex >= slides.length) {
-                nextIndex = 0; // Volver al inicio
-            }
-            moveToSlide(nextIndex);
-        });
-
-        // Event Listener para el botón Anterior
-        prevButton.addEventListener('click', () => {
-            let prevIndex = currentSlideIndex - 1;
-            if (prevIndex < 0) {
-                prevIndex = slides.length - 1; // Ir al final
-            }
-            moveToSlide(prevIndex);
-        });
-    } 
-
-    // Agregar event listeners a los enlaces de navegación
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault(); // MUY IMPORTANTE: Previene el comportamiento por defecto de saltar a #
+            e.preventDefault();
             const targetId = link.getAttribute('data-target');
-            if (targetId) {
-                switchTab(targetId);
-            }
-            
-            // Efecto de click visual rápido (opcional)
-            link.classList.add('clicked-effect');
-            setTimeout(() => {
-                link.classList.remove('clicked-effect');
-            }, 300);
+            if (targetId) switchTab(targetId);
         });
     });
 
-    // Iniciar el sistema mostrando la pestaña de inicio por defecto
     switchTab('home-section'); 
-    
-    
-    // --- Lógica de la Pantalla de Carga ---
-    // Ocultar la pantalla de carga después de 2 segundos (simulado)
+
     setTimeout(() => {
-        if (loadingScreen && container) {
-            // Animación de salida (opacidad a 0)
+        if (loadingScreen) {
             loadingScreen.style.opacity = '0'; 
-            
-            // Mostrar el contenedor principal
-            container.style.opacity = '1'; 
-            
-            // Remover el elemento del DOM después de la transición
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500); // 500ms es la duración de la transición en CSS
+            if (container) container.style.opacity = '1'; 
+            setTimeout(() => { loadingScreen.style.display = 'none'; }, 500);
         }
-    }, 2000); // 2 segundos de espera
+    }, 2000);
 
-    // --- Lógica del Reproductor de Música Flotante (AHORA SIEMPRE SE EJECUTA) ---
-    const audioPlayer = document.getElementById('audio-player');
-    const playPauseButton = document.getElementById('play-pause-button');
-    const volumeSlider = document.getElementById('volume-slider');
-    const playIcon = '▶';
-    const pauseIcon = '⏸';
+    // --- 2. LÓGICA DE LA GALERÍA ---
+    const slides = document.querySelectorAll('.gallery-slide');
+    const prevBtnGal = document.querySelector('.prev-button');
+    const nextBtnGal = document.querySelector('.next-button');
+    let currentSlideIndex = 0;
 
-    if (audioPlayer && playPauseButton && volumeSlider) {
-        
-        // Inicializar el volumen
-        audioPlayer.volume = volumeSlider.value;
+    if (slides.length > 0 && prevBtnGal && nextBtnGal) {
+        const moveToSlide = (idx) => {
+            slides[currentSlideIndex].classList.replace('current-slide', 'hidden-slide');
+            currentSlideIndex = idx;
+            slides[currentSlideIndex].classList.replace('hidden-slide', 'current-slide');
+        };
+        nextBtnGal.addEventListener('click', () => moveToSlide((currentSlideIndex + 1) % slides.length));
+        prevBtnGal.addEventListener('click', () => moveToSlide((currentSlideIndex - 1 + slides.length) % slides.length));
+    }
 
-        // Controlar Reproducción/Pausa
-        playPauseButton.addEventListener('click', () => {
-            if (audioPlayer.paused) {
-                // Intentar reproducir y manejar el error de autoplay (si ocurre)
-                audioPlayer.play().then(() => {
-                    playPauseButton.innerHTML = `<span class="icon-pause">${pauseIcon}</span>`;
-                    console.log("Música iniciada por interacción del usuario.");
-                }).catch(error => {
-                    console.warn("La reproducción automática ha fallado. Motivo: Bloqueo del navegador o ruta de archivo incorrecta.", error);
-                });
+    // --- 3. NUEVA LÓGICA DEL REPRODUCTOR (CON LISTA Y BOTÓN FLOTANTE) ---
+    const songs = [
+        { title: "Paulo Londra - Adan y Eva", file: "audio/Paulo Londra - Adan y Eva.mp3" },
+        { title: "Nombre Canción 2", file: "audio/cancion2.mp3" },
+        { title: "Nombre Canción 3", file: "audio/cancion3.mp3" }
+    ];
+
+    let songIndex = 0;
+    const audio = document.getElementById('audio-player');
+    const titleDisplay = document.getElementById('music-title');
+    const playPauseBtn = document.getElementById('play-pause-button');
+    const playIcon = document.getElementById('play-icon');
+    const toggleBtn = document.getElementById('toggle-player-btn');
+    const playerContainer = document.getElementById('floating-music-player');
+
+    function loadSong(index) {
+        const song = songs[index];
+        titleDisplay.innerText = song.title;
+        audio.src = song.file;
+    }
+
+    if (audio && playPauseBtn) {
+        loadSong(songIndex);
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().catch(() => console.log("Error al reproducir"));
+                playIcon.innerText = "⏸";
             } else {
-                audioPlayer.pause();
-                playPauseButton.innerHTML = `<span class="icon-play">${playIcon}</span>`;
+                audio.pause();
+                playIcon.innerText = "▶";
             }
         });
 
-        // Actualizar el botón al cambiar el estado (por ejemplo, si termina la canción)
-        audioPlayer.addEventListener('play', () => {
-            playPauseButton.innerHTML = `<span class="icon-pause">${pauseIcon}</span>`;
-        });
-        audioPlayer.addEventListener('pause', () => {
-            playPauseButton.innerHTML = `<span class="icon-play">${playIcon}</span>`;
-        });
-
-        // Controlar el volumen
-        volumeSlider.addEventListener('input', () => {
-            audioPlayer.volume = volumeSlider.value;
+        document.getElementById('next-song').addEventListener('click', () => {
+            songIndex = (songIndex + 1) % songs.length;
+            loadSong(songIndex);
+            audio.play();
+            playIcon.innerText = "⏸";
         });
 
-    } else {
-        console.error("No se encontraron todos los elementos del reproductor de audio.");
+        document.getElementById('prev-song').addEventListener('click', () => {
+            songIndex = (songIndex - 1 + songs.length) % songs.length;
+            loadSong(songIndex);
+            audio.play();
+            playIcon.innerText = "⏸";
+        });
+
+        document.getElementById('volume-slider').addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
+    }
+
+    // Abrir/Cerrar con el botón 🎵
+    if (toggleBtn && playerContainer) {
+        toggleBtn.addEventListener('click', () => {
+            playerContainer.classList.toggle('hidden-player');
+            toggleBtn.innerHTML = playerContainer.classList.contains('hidden-player') ? "🎵" : "✖";
+        });
     }
 });
