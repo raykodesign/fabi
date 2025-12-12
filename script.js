@@ -152,3 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("No se encontraron todos los elementos del reproductor de audio.");
     }
 });
+// --- Lógica del Reproductor Colapsable (NUEVO) ---
+    const playerDrawer = document.getElementById('player-drawer');
+    const toggleButton = document.getElementById('toggle-player');
+
+    if (playerDrawer && toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            playerDrawer.classList.toggle('open');
+            // Puedes cambiar la flecha aquí, aunque ya se hace con CSS
+        });
+        
+        // **OPCIONAL:** Abrir el reproductor por defecto en el primer load
+        // playerDrawer.classList.add('open'); 
+        
+    } else {
+        console.error("No se encontraron los elementos del drawer del reproductor.");
+    }
+    
+}); // Asegúrate de que esto siga siendo la etiqueta de cierre del DOMContentLoaded
