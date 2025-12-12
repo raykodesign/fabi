@@ -463,16 +463,121 @@ section::before {
     .header {
         margin: -20px -20px 20px -20px;
     }
-}
-/* CÓDIGO A AGREGAR EN style.css */
-
-/* PASO 2: OCULTAR EL REPRODUCTOR DE MÚSICA */
-#background-music {
-    visibility: hidden;
-    position: absolute;
-    top: -9999px; /* Moverlo fuera del área visible */
-    left: -9999px;
-    width: 0;
-    height: 0;
+    /* Mover el reproductor a la parte superior en móviles */
+    #floating-music-player {
+        bottom: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 0 0 10px 10px;
+    }
 }
 
+/* --- ESTILOS DEL REPRODUCTOR FLOTANTE (NUEVO) --- */
+
+#floating-music-player {
+    position: fixed; /* Lo hace flotante */
+    bottom: 20px; /* Se fija en la parte inferior */
+    right: 20px; /* Se fija a la derecha */
+    width: 250px; /* Ancho cómodo */
+    background: var(--navbar-bg); /* Color de la barra de navegación */
+    color: white;
+    padding: 10px;
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: var(--shadow); /* Sombra elegante */
+    z-index: 100; /* Asegura que esté por encima de todo */
+    border: 3px solid var(--dark-blue);
+    transition: transform 0.3s ease;
+}
+
+#floating-music-player:hover {
+    transform: scale(1.02);
+}
+
+/* Ocultar el control nativo de audio */
+#audio-player {
+    display: none;
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-title {
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 0.9em;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px 0;
+    color: var(--card-bg); /* Texto más claro */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.controls-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.player-button {
+    background-color: var(--dark-purple);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.2s, transform 0.2s;
+    flex-shrink: 0; /* No se encoge */
+}
+
+.player-button:hover {
+    background-color: var(--light-blue);
+    transform: scale(1.05);
+}
+
+/* Estilo del slider de volumen */
+#volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 70%;
+    height: 8px;
+    background: var(--light-blue);
+    border-radius: 4px;
+    outline: none;
+    transition: opacity 0.2s;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--dark-purple);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--dark-purple);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
