@@ -125,9 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Intentar reproducir y manejar el error de autoplay (si ocurre)
                 audioPlayer.play().then(() => {
                     playPauseButton.innerHTML = `<span class="icon-pause">${pauseIcon}</span>`;
+                    console.log("Música iniciada por interacción del usuario.");
                 }).catch(error => {
-                    console.warn("La reproducción automática ha sido bloqueada. Por favor, intenta de nuevo.", error);
-                    // Opcional: Mostrar un mensaje al usuario
+                    console.warn("La reproducción automática ha fallado. Motivo: Bloqueo del navegador o ruta de archivo incorrecta.", error);
                 });
             } else {
                 audioPlayer.pause();
