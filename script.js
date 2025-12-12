@@ -106,20 +106,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500); // 500ms es la duración de la transición en CSS
         }
     }, 2000); // 2 segundos de espera
-});
 
-// CÓDIGO A AGREGAR EN script.js (en la zona de const/variables)
+    // --- Lógica del Reproductor de Música Flotante (NUEVO) ---
+    const audioPlayer = document.getElementById('audio-player');
+    const playPauseButton = document.getElementById('play-pause-button');
+    const volumeSlider = document.getElementById('volume-slider');
+    const playIcon = '▶';
+    const pauseIcon = '⏸';
 
-const backgroundMusic = document.getElementById('background-music'); // Referencia al elemento de audio
+    if (audioPlayer && playPauseButton && volumeSlider) {
+        
+        // Inicializar el volumen
+        audioPlayer.volume = volumeSlider.value;
 
-// CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal)
-
-            // NUEVO: INTENTO DE REPRODUCIR LA MÚSICA
-            // ADVERTENCIA: Muchos navegadores modernos bloquean la reproducción automática (autoplay). 
-            // Esto intenta iniciarla cuando la pantalla de carga desaparece.
-            if (backgroundMusic) {
-                backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
-                backgroundMusic.play().catch(error => {
-                    console.warn("Autoplay bloqueado. La música se iniciará con el primer clic del usuario.", error);
+        // Controlar Reproducción/Pausa
+        playPauseButton.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                // Intentar reproducir y manejar el error de autoplay (si ocurre)
+                audioPlayer.play().then(() => {
+                    playPauseButton.innerHTML = `<span class="icon-pause">${pauseIcon}</span>`;
+                }).catch(error => {
+                    console.warn("La reproducción automática ha sido bloqueada. Por favor, intenta de nuevo.", error);
+                    // Opcional: Mostrar un mensaje al usuario
                 });
+            } else {
+                audioPlayer.pause();
+                playPauseButton.innerHTML = `<span class="icon-play">${playIcon}</span>`;
             }
+        });
+
+        // Actualizar el botón al cambiar el estado (por ejemplo, si termina la canción)
+        audioPlayer.addEventListener('play', () => {
+            playPauseButton.innerHTML = `<span class="icon-pause">${pauseIcon}</span>`;
+        });
+        audioPlayer.addEventListener('pause', () => {
+            playPauseButton.innerHTML = `<span class="icon-play">${playIcon}</span>`;
+        });
+
+        // Controlar el volumen
+        volumeSlider.addEventListener('input', () => {
+            audioPlayer.volume = volumeSlider.value;
+        });
+
+    } else {
+        console.error("No se encontraron todos los elementos del reproductor de audio.");
+    }
+});
