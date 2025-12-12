@@ -71,12 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // CÓDIGO A AGREGAR EN script.js (en la zona de const/variables)
 
-const backgroundMusic = document.getElementById('background-music'); // Referencia al elemento de audio
+    const backgroundMusic = document.getElementById('background-music'); // Referencia al elemento de audio
 
-// CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal)
+// CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal, línea ~88)
 
             // NUEVO: INTENTO DE REPRODUCIR LA MÚSICA
-            // ADVERTENCIA: Muchos navegadores modernos bloquean la reproducción automática (autoplay). 
             // Esto intenta iniciarla cuando la pantalla de carga desaparece.
             if (backgroundMusic) {
                 backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
