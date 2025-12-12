@@ -215,7 +215,7 @@ section::before {
 }
 
 /* PERFIL */
-.profile-card { text-align: center; padding: 0px 250px; }
+.profile-card { text-align: center; }
 .profile-avatar {
     width: 150px; height: 150px; 
     border-radius: 50%;
@@ -475,3 +475,4 @@ section::before {
     width: 0;
     height: 0;
 }
+
