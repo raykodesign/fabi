@@ -107,50 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 2000); // 2 segundos de espera
 });
+
 // CÓDIGO A AGREGAR EN script.js (en la zona de const/variables)
 
 const backgroundMusic = document.getElementById('background-music'); // Referencia al elemento de audio
-const musicToggleButton = document.getElementById('music-toggle-button'); // Referencia al botón de control
-const musicIcon = document.getElementById('music-icon'); // Referencia al ícono
-
-// CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal)
-
-// --- Lógica del Reproductor de Música ---
-    if (musicToggleButton && backgroundMusic) {
-        
-        // Función para cambiar el estado y el ícono
-        const toggleMusic = () => {
-            if (backgroundMusic.paused) {
-                // Intentar reproducir
-                backgroundMusic.play().then(() => {
-                    musicToggleButton.classList.remove('paused');
-                    musicIcon.textContent = '🎶'; // Icono de reproducción
-                }).catch(error => {
-                    console.error("Fallo al intentar reproducir el audio:", error);
-                    // Si falla, se queda en pausa y se mantiene el icono de silencio.
-                    musicToggleButton.classList.add('paused');
-                    musicIcon.textContent = '🔇';
-                });
-            } else {
-                // Pausar
-                backgroundMusic.pause();
-                musicToggleButton.classList.add('paused');
-                musicIcon.textContent = '🔇'; // Icono de silencio/pausa
-            }
-        };
-
-        // Escuchar el evento click en el botón
-        musicToggleButton.addEventListener('click', toggleMusic);
-        
-        // Inicializar el estado visual del botón (por si el autoplay falla)
-        if (backgroundMusic.paused) {
-             musicToggleButton.classList.add('paused');
-             musicIcon.textContent = '🔇';
-        } else {
-             musicToggleButton.classList.remove('paused');
-             musicIcon.textContent = '🎶';
-        }
-    }
 
 // CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal)
 
@@ -163,4 +123,3 @@ const musicIcon = document.getElementById('music-icon'); // Referencia al ícono
                     console.warn("Autoplay bloqueado. La música se iniciará con el primer clic del usuario.", error);
                 });
             }
-
