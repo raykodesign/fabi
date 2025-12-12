@@ -29,6 +29,45 @@ document.addEventListener('DOMContentLoaded', () => {
             activeLink.classList.add('active');
         }
     };
+    // --- Lógica del Carrusel de la Galería ---
+    const galleryTrack = document.querySelector('.gallery-track');
+    const slides = document.querySelectorAll('.gallery-slide');
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    let currentSlideIndex = 0;
+    
+    // Función para mostrar la diapositiva específica
+    const moveToSlide = (targetIndex) => {
+        // 1. Ocultar la diapositiva actual
+        slides[currentSlideIndex].classList.remove('current-slide');
+        slides[currentSlideIndex].classList.add('hidden-slide');
+        
+        // 2. Actualizar el índice
+        currentSlideIndex = targetIndex;
+        
+        // 3. Mostrar la nueva diapositiva
+        slides[currentSlideIndex].classList.remove('hidden-slide');
+        slides[currentSlideIndex].classList.add('current-slide');
+    };
+
+    // Event Listener para el botón Siguiente
+    nextButton.addEventListener('click', () => {
+        let nextIndex = currentSlideIndex + 1;
+        if (nextIndex >= slides.length) {
+            nextIndex = 0; // Volver al inicio
+        }
+        moveToSlide(nextIndex);
+    });
+
+    // Event Listener para el botón Anterior
+    prevButton.addEventListener('click', () => {
+        let prevIndex = currentSlideIndex - 1;
+        if (prevIndex < 0) {
+            prevIndex = slides.length - 1; // Ir al final
+        }
+        moveToSlide(prevIndex);
+    });
+    
 
     // Agregar event listeners a los enlaces de navegación
     navLinks.forEach(link => {
@@ -71,11 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // CÓDIGO A AGREGAR EN script.js (en la zona de const/variables)
 
-    const backgroundMusic = document.getElementById('background-music'); // Referencia al elemento de audio
+const backgroundMusic = document.getElementById('background-music'); // Referencia al elemento de audio
 
-// CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal, línea ~88)
+// CÓDIGO A AGREGAR EN script.js (dentro del setTimeout principal)
 
             // NUEVO: INTENTO DE REPRODUCIR LA MÚSICA
+            // ADVERTENCIA: Muchos navegadores modernos bloquean la reproducción automática (autoplay). 
             // Esto intenta iniciarla cuando la pantalla de carga desaparece.
             if (backgroundMusic) {
                 backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
