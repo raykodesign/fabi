@@ -3,42 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XatSpace Fabi</title>
+    <title>Fabi's Golden Space ✨</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <button id="toggle-player-btn" class="floating-toggle">
-        <span id="toggle-icon">🎵</span>
+    
+    <div id="loading-screen">
+        <div class="loader-content">
+            <h1 class="loader-title">Fabi</h1>
+            <div class="chic-spinner"></div>
+        </div>
+    </div>
+
+    <button id="toggle-player-btn" class="floating-toggle" aria-label="Música">
+        <i class="ph-fill ph-music-note"></i>
     </button>
     
     <div id="floating-music-player" class="music-player hidden-player">
+        <div class="player-blur"></div>
         <div class="player-content">
+            <div class="vinyl-decoration">
+                <div class="vinyl-center"></div>
+            </div>
             <div class="music-info">
-                <marquee id="music-title" behavior="scroll" direction="left">Selecciona una canción</marquee>
+                <div class="scrolling-text-container">
+                    <span id="music-title" class="scrolling-text">Selecciona una canción...</span>
+                </div>
             </div>
             
             <audio id="audio-player" src="" loop></audio>
             
             <div class="player-controls">
-                <div class="main-buttons">
-                    <button id="prev-song" class="control-btn">⏮</button>
-                    <button id="play-pause-button" class="player-button">
-                        <span id="play-icon">▶</span>
-                    </button>
-                    <button id="next-song" class="control-btn">⏭</button>
-                </div>
+                <button id="prev-song" class="control-btn"><i class="ph-fill ph-skip-back"></i></button>
+                <button id="play-pause-button" class="play-btn">
+                    <i id="play-icon" class="ph-fill ph-play"></i>
+                </button>
+                <button id="next-song" class="control-btn"><i class="ph-fill ph-skip-forward"></i></button>
+            </div>
+            <div class="volume-box">
+                <i class="ph-fill ph-speaker-low"></i>
                 <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
             </div>
         </div>
     </div>
-    <div id="loading-screen">
-        <div class="loader-content">
-            <span class="loader-text">Loading...</span>
-            <div class="spinner"></div>
-        </div>
-    </div>
-    <div class="container" style="opacity: 0;"> <header class="header">
-            <h1>Fabi</h1>
+
+    <div class="sparkles-container"></div>
+
+    <div class="container" style="opacity: 0;"> 
+        
+        <header class="glam-header">
+            <h1 class="glam-title">Fabi</h1>
+            <p class="glam-subtitle">1502861959</p>
         </header>
 
         <nav class="navbar">
@@ -51,273 +67,154 @@
 
         <div id="content-area">
 
-            <div id="home-section" class="content-section">
-                <main class="main-content">
-                    <section class="profile-card">
-                        <h2>Sobre Mí</h2>
-                        <div class="profile-avatar">
-                            <img src="https://xatimg.com/image/nW55YBWRcnQW.jpg" alt="Avatar de usuario">
-                        </div>
-                        <p>Hola.</p>
-                     
-                    </section>
-                </main>
-                <section class="friends-list-container">
-                    <h2>Mis Amigos</h2>
-                    <div class="friends-list">
-                         <a href="https://xat.me/Jhon" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/MjeWd1SYnYh9.png" alt="Avatar Amigo 1">
+            <div id="home-section" class="content-section active-section">
+                
+                <section class="bio-card">
+                    <div class="avatar-border">
+                        <img src="https://xatimg.com/image/nW55YBWRcnQW.jpg" alt="Fabi Avatar" class="main-avatar">
+                    </div>
+                    <h2>Sobre mi</h2>
+                    <p class="bio-text">Hola.</p>
+                </section>
+
+                <div class="divider-gold"><span>✦</span></div>
+
+                <section class="friends-showcase">
+                    <h2 class="section-title">Mis Amigos </h2>
+                    <div class="friends-grid-chic">
+                        <a href="https://xat.me/Jhon" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/MjeWd1SYnYh9.png" alt="Jhon">
                             <span>Jhon</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/iLushoooooo1" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/1KdIw2uNwv1b.png" alt="Avatar Amigo 1">
+                        <a href="https://xat.me/iLushoooooo1" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/1KdIw2uNwv1b.png" alt="Lusho">
                             <span>Lusho</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/xLe0nelx25" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/nQGg9tDYy5Jk.jpg" alt="Avatar Amigo 2">
+                        <a href="https://xat.me/xLe0nelx25" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/nQGg9tDYy5Jk.jpg" alt="Leonel">
                             <span>Leonel</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Rayko" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/o6gySJoQm3bX.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Rayko" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/o6gySJoQm3bX.png" alt="Rayko">
                             <span>Rayko</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Heis" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/7PjhGl87MpZ1.jpg" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Heis" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/7PjhGl87MpZ1.jpg" alt="Heis">
                             <span>Heis</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/DaropLaygg" target="_blank" class="friend-item">
-                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/WYAy76qvM2Nk.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/DaropLaygg" target="_blank" class="friend-gem">
+                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/WYAy76qvM2Nk.png" alt="Andres">
                             <span>Andres</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/iviV" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/SRsGUjZ144fe.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/iviV" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/SRsGUjZ144fe.png" alt="Viviana">
                             <span>Viviana</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Majito2395" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/TO4iAUl9bmnp.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Majito2395" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/TO4iAUl9bmnp.png" alt="Majito">
                             <span>Majito</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/TuColaBaboso" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/guXBR6Ku7JhR.jpg" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/TuColaBaboso" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/guXBR6Ku7JhR.jpg" alt="Shamp">
                             <span>Shamp</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Solangel" target="_blank" class="friend-item">
-                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/5xtwwvvxCweJ.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Solangel" target="_blank" class="friend-gem">
+                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/5xtwwvvxCweJ.png" alt="Ashley">
                             <span>Ashley</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Narcoticzz" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/dg9CjxdrXIpA.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Narcoticzz" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/dg9CjxdrXIpA.png" alt="Kiyan">
                             <span>Kiyan</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Ronald1306" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/xkxZULX2X8Yk.gif" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Ronald1306" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/xkxZULX2X8Yk.gif" alt="Sam">
                             <span>Sam</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Gaby" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/kE0XqQ4WiVSH.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Gaby" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/kE0XqQ4WiVSH.png" alt="Gaby">
                             <span>Gaby</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-item">
-                            <img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-gem">
+                            <img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif" alt="Shelby">
                             <span>Shelby</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/alberto2026" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/OKKhYQrclWVE.jpg" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/alberto2026" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/OKKhYQrclWVE.jpg" alt="Alberto">
                             <span>Alberto</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/cobain" target="_blank" class="friend-item">
-                            <img src="https://u.cubeupload.com/JeanCarlos_7/Jeaan.png" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/cobain" target="_blank" class="friend-gem">
+                            <img src="https://u.cubeupload.com/JeanCarlos_7/Jeaan.png" alt="Cobain">
                             <span>Cobain</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/lineadecal" target="_blank" class="friend-item">
-                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/ont7jQDSB0A0.gif" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/lineadecal" target="_blank" class="friend-gem">
+                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/ont7jQDSB0A0.gif" alt="Nes">
                             <span>Nes</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Machoooooo" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/epiVbLJBCQKb.jpg" alt="Avatar Amigo 3">
+                        <a href="https://xat.me/Machoooooo" target="_blank" class="friend-gem">
+                            <img src="https://xatimg.com/image/epiVbLJBCQKb.jpg" alt="Camilo">
                             <span>Camilo</span>
-                            <span class="link-icon">🔗</span>
                         </a>
-                        <a href="https://xat.me/Marv" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/epiVLJBCQKb.jpg" alt="Avatar Amigo 3">
+                         <a href="https://xat.me/Marv" target="_blank" class="friend-gem">
+                            <img src="https://i.ibb.co/5xtkQkTq/rappimrv.png" alt="Marvin">
                             <span>Marvin</span>
-                            <span class="link-icon">🔗</span>
                         </a>
                     </div>
                 </section>
             </div>
 
             <div id="profile-section" class="content-section hidden">
-                <section class="full-profile-view section-style-2">
-                    <h2>🎀 Mi Perfil Completo 🎀</h2>
-                    <p>Hola.</p>
-                    <ul>
-                        <li>✨ *Música Favorita:* rock y metal *</li>
-                        <li>💖 *Citas Favoritas:* "Tenemos tantas cosas y tantas oportunidades que ya ni siquiera sabemos que nos importa. "</li>
-                        <li>💻 *Estado:* Ocupada siempre.</li>
+                <section class="chic-panel">
+                    <h2 class="section-title">Sobre Mí</h2>
+                    <ul class="glam-list">
+                        <li>
+                            <div class="list-icon"></div>
+                            <div class="list-content">
+                                <strong>Música Favorita</strong>
+                                <span>Rock y Metal</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-icon"></div>
+                            <div class="list-content">
+                                <strong>Frase Favorita</strong>
+                                <span>"Tenemos tantas cosas y tantas oportunidades que ya ni siquiera sabemos que nos importa."</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-icon"></div>
+                            <div class="list-content">
+                                <strong>Estado Actual</strong>
+                                <span>Ocupada siempre.</span>
+                            </div>
+                        </li>
                     </ul>
                 </section>
             </div>
 
-            <div id="friends-section" class="content-section hidden">
-                <section class="full-friends-list section-style-2">
-                    <h2>Mis Amigos</h2>
-                    <div class="friends-grid">
-                        <a href="https://xat.me/Jhon" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/MjeWd1SYnYh9.png" alt="Avatar Amigo 1">
-                            <span>Jhon</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/iLushoooooo1" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/1KdIw2uNwv1b.png" alt="Avatar Amigo 1">
-                            <span>Lusho</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/xLe0nelx25" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/nQGg9tDYy5Jk.jpg" alt="Avatar Amigo 2">
-                            <span>Leonel</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Rayko" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/o6gySJoQm3bX.png" alt="Avatar Amigo 3">
-                            <span>Rayko</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Heis" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/7PjhGl87MpZ1.jpg" alt="Avatar Amigo 3">
-                            <span>Heis</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/DaropLaygg" target="_blank" class="friend-item">
-                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/WYAy76qvM2Nk.png" alt="Avatar Amigo 3">
-                            <span>Andres</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/iviV" target="_blank" class="friend-item">
-                            <img src="https://i0.xat.com/web_gear/chat/GetImage9.php?s&W=80&H=80&U=https://xatimg.com/image/AAj0ZzH1wp5C.png" alt="Avatar Amigo 3">
-                            <span>Viviana</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Majito2395" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/TO4iAUl9bmnp.png" alt="Avatar Amigo 3">
-                            <span>Majito</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/TuColaBaboso" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/guXBR6Ku7JhR.jpg" alt="Avatar Amigo 3">
-                            <span>Shamp</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Solangel" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/xDUNSPd1Tycc.png" alt="Avatar Amigo 3">
-                            <span>Ashley</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Narcoticzz" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/dg9CjxdrXIpA.png" alt="Avatar Amigo 3">
-                            <span>Kiyan</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Ronald1306" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/xkxZULX2X8Yk.gif" alt="Avatar Amigo 3">
-                            <span>Sam</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Gaby" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/kE0XqQ4WiVSH.png" alt="Avatar Amigo 3">
-                            <span>Gaby</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-item">
-                            <img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif" alt="Avatar Amigo 3">
-                            <span>Shelby</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/alberto2026" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/OKKhYQrclWVE.jpg" alt="Avatar Amigo 3">
-                            <span>Alberto</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/cobain" target="_blank" class="friend-item">
-                            <img src="https://u.cubeupload.com/JeanCarlos_7/Jeaan.png" alt="Avatar Amigo 3">
-                            <span>Cobain</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/alberto2026" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/OKKhYQrcVE.jpg" alt="Avatar Amigo 3">
-                            <span>Nes</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                        <a href="https://xat.me/Machoooooo" target="_blank" class="friend-item">
-                            <img src="https://xatimg.com/image/epiVbLJBCQKb.jpg" alt="Avatar Amigo 3">
-                            <span>Camilo</span>
-                            <span class="link-icon">🔗</span>
-                        </a>
-                    </div>
-                </section>
-            </div>
-
             <div id="gallery-section" class="content-section hidden">
-                <section class="image-gallery section-style-2">
-                    <h2>🖼️ Mi Galería de Fotos 🖼️</h2>
+                <section class="chic-panel gallery-panel">
+                    <h2 class="section-title">Galería</h2>
                     
-                    <div class="carousel-container">
-                        <button class="carousel-button prev-button" aria-label="Anterior">
-                            &lt;
-                        </button>
-                        
-                        <div class="gallery-track">
-                            <img src="https://xatimg.com/image/tKhOWquLIWnV.jpg" alt="Foto 1" class="gallery-slide current-slide">
-                            <img src="https://xatimg.com/image/l1lKQBudgQyM.jpg" alt="Foto 2" class="gallery-slide hidden-slide">
-                            <img src="https://xatimg.com/image/khkKIGuWO5Mc.jpg" alt="Foto 3" class="gallery-slide hidden-slide">
-                            <img src="https://xatimg.com/image/B08y5KxSLntC.jpg" alt="Foto 4" class="gallery-slide hidden-slide">
+                    <div class="glam-carousel">
+                        <div class="carousel-track">
+                            <img src="https://xatimg.com/image/tKhOWquLIWnV.jpg" alt="Foto 1" class="active">
+                            <img src="https://xatimg.com/image/l1lKQBudgQyM.jpg" alt="Foto 2">
+                            <img src="https://xatimg.com/image/khkKIGuWO5Mc.jpg" alt="Foto 3">
+                            <img src="https://xatimg.com/image/B08y5KxSLntC.jpg" alt="Foto 4">
                         </div>
                         
-                        <button class="carousel-button next-button" aria-label="Siguiente">
-                            &gt;
-                        </button>
+                        <button class="nav-arrow prev-arrow">❮</button>
+                        <button class="nav-arrow next-arrow">❯</button>
                     </div>
-                    </section>
+                </section>
             </div>
             
         </div>
         <footer class="footer">
-            <p>&copy; 2025 <a href="https://xat.me/Rayko">Rayko Design </a>| Todos los derechos reservados.</p>
+            <p>DESIGNED BY <a href="https://xat.me/Rayko">RAYKO</a> © 2025</p>
         </footer>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
