@@ -3,18 +3,12 @@
 :root {
     --bg-black: #050505;
     --panel-black: rgba(10, 10, 10, 0.85);
-    
-    /* Dorados refinados */
     --gold-main: #d4af37; 
     --gold-bright: #fff5e1;
     --gold-dark: #8a6e3e;
     --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 40%, #b38728 60%, #fbf5b7 100%);
-    
-    /* Efecto Oro Líquido en movimiento */
     --liquid-gold: linear-gradient(90deg, #8a6e3e, #ffe5b4, #d4af37, #ffe5b4, #8a6e3e);
-    
     --text-main: #f0f0f0;
-    
     --font-script: 'Great Vibes', cursive;
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Lato', sans-serif;
@@ -25,16 +19,15 @@ body {
     background-color: var(--bg-black);
     color: var(--text-main);
     font-family: var(--font-sans);
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: hidden; 
 }
 
-/* --- FONDO ANIMADO --- */
+/* --- FONDO --- */
 .sparkles-container {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -45,19 +38,16 @@ body {
     z-index: -1;
     animation: twinkleBg 60s linear infinite;
 }
-@keyframes twinkleBg {
-    from { background-position: 0 0, 40px 60px; }
-    to { background-position: 550px 550px, 390px 410px; }
-}
+@keyframes twinkleBg { from { background-position: 0 0; } to { background-position: 550px 550px; } }
 
 /* --- EFECTO MOUSE --- */
 .mouse-sparkle {
     position: absolute;
-    width: 5px; height: 5px;
+    width: 6px; height: 6px;
     background: var(--gold-bright);
     border-radius: 50%;
     pointer-events: none;
-    box-shadow: 0 0 15px var(--gold-main);
+    box-shadow: 0 0 10px var(--gold-main);
     animation: sparkleAnim 0.8s linear forwards;
     z-index: 9999;
 }
@@ -66,35 +56,28 @@ body {
     100% { opacity: 0; transform: scale(0) translateY(20px); }
 }
 
-/* --- CLASES DE ANIMACIÓN DE ENTRADA (CASCADA) --- */
-/* Elementos ocultos inicialmente */
-.reveal-wait {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+.reveal-wait { opacity: 0; transform: translateY(15px); transition: all 0.8s ease; }
+.reveal-visible { opacity: 1; transform: translateY(0); }
 
-/* Estado visible */
-.reveal-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- CONTENEDOR PRINCIPAL --- */
+/* --- CONTAINER --- */
 .container {
     background: var(--panel-black);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 25px;
-    width: 100%;
-    max-width: 800px;
-    /* Animación de iluminación en el borde */
-    box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.05);
+    border-radius: 20px;
+    
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    max-height: 85vh;
+    margin: auto;
+    
+    display: flex;
+    flex-direction: column;
     position: relative;
-    padding: 0;
     overflow: hidden;
-    opacity: 0; /* JS lo hará 1 */
+    opacity: 0;
     transition: opacity 1s ease;
     animation: borderGlow 4s infinite alternate;
 }
@@ -104,240 +87,278 @@ body {
     100% { box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 25px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.6); }
 }
 
-/* HEADER */
+/* --- HEADER CON ANIMACIÓN DE ENTRADA --- */
 .glam-header {
     text-align: center;
-    padding: 40px 20px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding-top: 40px;
+    padding-bottom: 5px;
+    flex-shrink: 0;
 }
 
-/* Texto Oro Líquido en Movimiento */
 .glam-title {
     font-family: var(--font-script);
-    font-size: 6rem;
+    font-size: 3.5rem;
     margin: 0;
-    padding: 10px 0;
+    padding: 0 10px;
     background: var(--liquid-gold);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-    line-height: 1.1;
-    animation: shineText 3s linear infinite;
+    
+    /* ANIMACIÓN COMBINADA: Brillo + Entrada Épica */
+    animation: 
+        shineText 3s linear infinite,
+        titleEntrance 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+        
+    display: inline-block;
 }
 
-@keyframes shineText {
-    to { background-position: 200% center; }
+/* Efecto de Brillo */
+@keyframes shineText { to { background-position: 200% center; } }
+
+/* Efecto de Entrada (Zoom + Fade + Blur) */
+@keyframes titleEntrance {
+    0% {
+        letter-spacing: 10px;
+        opacity: 0;
+        transform: scale(1.5);
+        filter: blur(10px);
+    }
+    100% {
+        letter-spacing: 0;
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
 }
 
 .glam-subtitle {
     font-family: var(--font-serif);
     color: var(--gold-main);
-    letter-spacing: 4px;
-    font-size: 0.8rem;
-    margin-top: -10px;
+    letter-spacing: 3px;
+    font-size: 0.65rem;
+    margin-top: 2px;
     text-transform: uppercase;
+    animation: fadeInSub 2s ease forwards 1s; /* Aparece después del título */
+    opacity: 0;
 }
+@keyframes fadeInSub { to { opacity: 1; } }
 
-/* NAVEGACIÓN */
+/* --- NAVBAR --- */
 .navbar {
     background: rgba(0,0,0,0.2);
-    padding: 15px;
+    padding: 8px 0;
+    flex-shrink: 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 5px;
 }
-.navbar ul {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; justify-content: center; gap: 20px;
-    flex-wrap: wrap;
-}
+.navbar ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 5px; }
 .navbar a {
-    text-decoration: none;
-    color: #999;
+    text-decoration: none; color: #999;
     font-family: var(--font-serif);
-    font-size: 1rem;
-    padding: 8px 18px;
-    border-radius: 30px;
-    transition: 0.4s;
-    border: 1px solid transparent;
+    font-size: 0.75rem; padding: 4px 10px; border-radius: 15px;
+    transition: 0.3s;
 }
-.navbar a.active, .navbar a:hover {
-    color: #000;
-    background: var(--gold-gradient);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-    font-weight: bold;
+.navbar a.active, .navbar a:hover { color: #000; background: var(--gold-gradient); font-weight: bold; }
+
+/* --- CONTENIDO (SCROLL OCULTO HASTA HOVER) --- */
+#content-area {
+    flex-grow: 1;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+    /* Configuración para ocultar scroll por defecto */
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent; /* Firefox: Invisible */
+    transition: scrollbar-color 0.3s ease;
 }
 
-/* CONTENIDO */
-.content-section { padding: 40px; }
+/* Mostrar scroll al pasar el mouse (Firefox) */
+#content-area:hover {
+    scrollbar-color: var(--gold-main) rgba(0,0,0,0.1);
+}
+
+/* Configuración Webkit (Chrome/Safari/Edge) */
+#content-area::-webkit-scrollbar { width: 4px; } /* Muy fino */
+#content-area::-webkit-scrollbar-track { background: transparent; }
+#content-area::-webkit-scrollbar-thumb { 
+    background-color: transparent; /* Invisible por defecto */
+    border-radius: 10px; 
+    transition: background-color 0.3s;
+}
+
+/* Mostrar scroll al pasar el mouse (Webkit) */
+#content-area:hover::-webkit-scrollbar-thumb {
+    background-color: var(--gold-main);
+}
+
+.content-section {
+    padding: 10px 20px 20px 20px;
+    min-height: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .content-section.hidden { display: none; }
 
-/* BIO CARD */
-.bio-card { text-align: center; margin-bottom: 40px; }
+/* --- INTERNOS --- */
+.bio-card { text-align: center; margin-bottom: 10px; width: 100%; margin-top: 10px; }
 .avatar-border {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 20px;
-    padding: 6px;
+    width: 100px; height: 100px;
+    margin: 0 auto 5px; padding: 3px;
     border-radius: 50%;
-    /* Borde con gradiente rotativo */
     background: conic-gradient(from 0deg, #8a6e3e, #fff5e1, #d4af37, #fff5e1, #8a6e3e);
-    position: relative;
     animation: spinSlow 6s linear infinite;
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
 }
-.avatar-border img { animation: counterSpin 6s linear infinite; /* Para que la foto no gire */ }
-
+.avatar-border img { animation: counterSpin 6s linear infinite; }
 @keyframes spinSlow { to { transform: rotate(360deg); } }
 @keyframes counterSpin { to { transform: rotate(-360deg); } }
+.main-avatar { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid var(--bg-black); }
+.bio-text { font-style: italic; color: #ddd; font-size: 0.9rem; margin: 0; }
 
-.main-avatar {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--bg-black);
-}
-
-.bio-text {
-    font-style: italic;
-    color: #ddd;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* DIVISOR */
-.divider-gold {
-    text-align: center; margin: 50px 0; opacity: 0.6; position: relative;
+.divider-gold { 
+    text-align: center; margin: 10px 0; width: 100%; opacity: 0.6; position: relative; 
 }
 .divider-gold::before, .divider-gold::after {
     content: ''; position: absolute; top: 50%; width: 40%; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-main), transparent);
 }
-.divider-gold::before { left: 0; }
-.divider-gold::after { right: 0; }
-.divider-gold span { color: var(--gold-main); font-size: 1.2rem; }
+.divider-gold::before { left: 0; } .divider-gold::after { right: 0; }
+.divider-gold span { font-size: 0.8rem; }
 
-/* --- AMIGOS --- */
-.friends-grid-chic {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 0 10px;
-}
-.friend-gem {
-    width: 75px;
-    text-decoration: none; color: var(--text-main);
-    display: flex; flex-direction: column; align-items: center;
-    transition: 0.4s; margin-bottom: 8px;
-    /* Importante para la animación de cascada */
-    opacity: 0; 
-    transform: translateY(20px);
-}
-/* Animación que activará JS */
-.friend-gem.pop-in {
-    opacity: 1; transform: translateY(0);
-}
+/* Amigos */
+.friends-showcase { width: 100%; text-align: center; padding-bottom: 20px; }
+.section-title { font-family: var(--font-serif); color: var(--gold-main); font-size: 0.85rem; margin: 0 0 8px 0; }
+.friends-grid-chic { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+.friend-gem { width: 45px; text-decoration: none; display: flex; flex-direction: column; align-items: center; transition: 0.3s; opacity: 0; transform: translateY(10px); }
+.friend-gem.pop-in { opacity: 1; transform: translateY(0); }
+.friend-gem img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold-dark); padding: 1px; background: rgba(0,0,0,0.5); }
+.friend-gem span { margin-top: 2px; font-size: 0.5rem; color: #888; text-transform: uppercase; }
 
-.friend-gem img {
-    width: 55px; height: 55px;
-    border-radius: 50%; object-fit: cover;
-    border: 2px solid var(--gold-dark); padding: 2px;
-    transition: 0.3s; background: rgba(0,0,0,0.5);
-}
-.friend-gem:hover img {
-    border-color: var(--gold-bright);
-    box-shadow: 0 0 15px var(--gold-main);
-    transform: scale(1.1);
-}
-.friend-gem span {
-    margin-top: 4px; font-size: 0.75rem; color: #999; text-transform: uppercase;
-}
-.friend-gem:hover span { color: var(--gold-bright); }
+/* Perfil */
+.chic-panel { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 15px; border: 1px solid rgba(212, 175, 55, 0.15); width: 100%; box-sizing: border-box; }
+.glam-list li { margin-bottom: 8px; }
+.glam-list strong { color: var(--gold-main); display: block; font-size: 0.75rem; }
+.glam-list span { color: #ccc; font-size: 0.8rem; }
 
-/* --- REPRODUCTOR --- */
+/* Galería */
+.glam-carousel { 
+    position: relative; width: 100%; height: 200px; 
+    background: #000; border-radius: 10px; overflow: hidden; 
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-dark);
+}
+.carousel-track img { position: absolute; top:0; left:0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 0.6s; }
+.carousel-track img.active { opacity: 1; }
+.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 0.7rem; }
+.prev-arrow { left: 5px; } .next-arrow { right: 5px; }
+
+/* Player */
 .floating-toggle {
-    position: fixed; bottom: 30px; left: 30px;
-    width: 60px; height: 60px;
-    background: #000; border: 2px solid var(--gold-main);
-    border-radius: 50%; color: var(--gold-main); font-size: 1.6rem;
-    cursor: pointer; z-index: 1001;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-    display: flex; align-items: center; justify-content: center;
-    transition: 0.3s;
+    position: fixed; bottom: 15px; left: 15px; width: 35px; height: 35px;
+    background: #000; border: 1px solid var(--gold-main); border-radius: 50%; color: var(--gold-main); font-size: 1rem;
+    cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center;
 }
-.floating-toggle:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--gold-main); }
-
 .music-player {
-    position: fixed; bottom: 100px; left: 30px; width: 280px;
-    background: rgba(10, 10, 10, 0.95);
-    border: 1px solid var(--gold-main); border-radius: 20px; padding: 25px;
-    z-index: 1000; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    position: fixed; bottom: 60px; left: 15px; width: 200px;
+    background: rgba(10, 10, 10, 0.95); border: 1px solid var(--gold-main); border-radius: 15px; padding: 12px;
+    z-index: 1000; transition: 0.4s;
 }
-.music-player.hidden-player { transform: scale(0.8) translateY(20px); opacity: 0; pointer-events: none; }
+.music-player.hidden-player { transform: scale(0.8); opacity: 0; pointer-events: none; }
+.player-controls { display: flex; justify-content: space-between; align-items: center; margin: 5px 0; }
+.play-btn { width: 30px; height: 30px; border-radius: 50%; background: var(--gold-gradient); border: none; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-.vinyl-decoration {
-    width: 80px; height: 80px;
-    background: radial-gradient(#222, #000);
-    border: 1px solid #333;
-    border-radius: 50%; margin: 0 auto 20px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-    animation: spinVinyl 5s linear infinite; animation-play-state: paused;
-}
-.music-player:not(.paused) .vinyl-decoration { animation-play-state: running; }
-@keyframes spinVinyl { to { transform: rotate(360deg); } }
-.vinyl-center { width: 25px; height: 25px; background: var(--gold-gradient); border-radius: 50%; }
-
-.player-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.control-btn { background: none; border: none; color: #666; font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
-.control-btn:hover { color: var(--gold-bright); }
-.play-btn {
-    width: 50px; height: 50px; border-radius: 50%; background: var(--gold-gradient);
-    border: none; color: #000; font-size: 1.4rem; cursor: pointer;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); display: flex; align-items: center; justify-content: center;
-}
-.volume-box { display: flex; align-items: center; gap: 10px; color: var(--gold-dark); }
-#volume-slider { flex: 1; accent-color: var(--gold-main); height: 3px; cursor: pointer; }
-
-/* LOADING SCREEN INTERACTIVO */
+/* Footer */
+.footer { text-align: center; padding: 5px; font-size: 0.5rem; color: #555; flex-shrink: 0; margin-top: auto; }
+.footer a { color: var(--gold-dark); text-decoration: none; }
+/* --- LOADING SCREEN (Entrada Épica Interactiva) --- */
 #loading-screen {
     position: fixed; inset: 0; background: #000;
     z-index: 9999; display: flex; align-items: center; justify-content: center;
-    flex-direction: column; transition: opacity 0.8s; cursor: pointer;
+    flex-direction: column; transition: opacity 0.8s;
+    cursor: pointer; /* Todo la pantalla es clickeable */
 }
-.loader-content { text-align: center; animation: pulse 2s infinite; }
-@keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; text-shadow: 0 0 30px var(--gold-main); } 100% { opacity: 0.8; } }
 
+/* El Contenedor del nombre para centrar bien */
+.loader-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+/* TÍTULO FABI (Interactivo) */
 .loader-title { 
     font-family: var(--font-script); 
+    /* Gradiente dorado base */
     background: var(--liquid-gold);
-    background-size: 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 5rem; margin-bottom: 20px; 
-    animation: shineText 3s linear infinite;
-}
-.click-hint {
-    color: var(--gold-main); font-family: var(--font-sans);
-    letter-spacing: 2px; font-size: 0.9rem; margin-top: 20px;
-    text-transform: uppercase; opacity: 0; animation: fadeInHint 1s ease forwards 1s;
-}
-@keyframes fadeInHint { to { opacity: 1; } }
-
-/* Footer */
-.footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.7rem; color: #555; }
-.footer a { color: var(--gold-dark); text-decoration: none; }
-
-/* Responsive */
-@media (max-width: 600px) {
-    .glam-title { font-size: 4.5rem; }
-    .avatar-border { width: 160px; height: 160px; }
-    .music-player { left: 50%; transform: translateX(-50%) scale(0.9) translateY(20px); bottom: 90px; }
-    .music-player:not(.hidden-player) { transform: translateX(-50%) scale(1) translateY(0); }
+    
+    font-size: 5rem; /* Tamaño grande */
+    padding: 20px;   /* Espacio para que no se corte el brillo */
+    margin: 0;
+    
+    /* Configuración de interactividad */
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+    
+    /* ANIMACIÓN 1: El brillo que se mueve siempre */
+    /* ANIMACIÓN 2: El "Latido" para invitar al click */
+    animation: 
+        shineText 3s linear infinite,
+        invitationPulse 2s ease-in-out infinite;
 }
 
-/* Clases utilitarias de visualización */
-.chic-panel { background: rgba(255,255,255,0.02); border-radius: 20px; padding: 30px; border: 1px solid rgba(212, 175, 55, 0.15); }
-.glam-carousel { position: relative; width: 100%; height: 450px; background: #000; border: 1px solid var(--gold-dark); border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.carousel-track img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 0.8s; }
-.carousel-track img.active { opacity: 1; transform: scale(1.05); }
-.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: var(--gold-bright); border: 1px solid rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; }
-.prev-arrow { left: 15px; } .next-arrow { right: 15px; }
+/* --- ESTADO HOVER (Cuando el mouse toca el nombre) --- */
+.loader-title:hover {
+   
+    transform: scale(1.15) rotate(-2deg); /* Crece y se inclina un poco */
+    
+    /* Un brillo dorado exterior muy fuerte */
+    text-shadow: 
+        0 0 10px var(--gold-main),
+        0 0 10px var(--gold-dark);
+        
+    /* Filtro para hacerlo más brillante */
+    filter: brightness(1.3) drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+}
+
+/* También agrandamos un poco el spinner si pasas el mouse por el nombre */
+.loader-title:hover + .chic-spinner {
+    opacity: 0; /* Ocultamos el spinner para dar protagonismo al nombre */
+    transform: scale(0);
+}
+
+/* --- ANIMACIONES --- */
+
+/* Animación de "Latido" suave (Invitación) */
+@keyframes invitationPulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05); /* Crece un poquito */
+        text-shadow: 0 0 25px rgba(212, 175, 55, 0.6); /* Brilla más */
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        opacity: 0.9;
+    }
+}
+
+/* Animación del texto dorado moviéndose */
+@keyframes shineText { 
+    to { background-position: 200% center; } 
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
