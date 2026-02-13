@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabi's Golden Space ✨</title>
+    <title>Faby ✨</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
@@ -11,7 +11,7 @@
     
     <div id="loading-screen">
         <div class="loader-content">
-            <h1 class="loader-title">Fabi</h1>
+            <h1 class="loader-title">Faby</h1>
             <div class="chic-spinner"></div>
         </div>
     </div>
@@ -21,39 +21,28 @@
     </button>
     
     <div id="floating-music-player" class="music-player hidden-player">
-        <div class="player-blur"></div>
         <div class="player-content">
-            <div class="vinyl-decoration">
-                <div class="vinyl-center"></div>
+            <div class="music-info" style="text-align:center;">
+                <span id="music-title" style="color:var(--gold-main); font-size:0.6rem;">Selecciona canción...</span>
             </div>
-            <div class="music-info">
-                <div class="scrolling-text-container">
-                    <span id="music-title" class="scrolling-text">Selecciona una canción...</span>
-                </div>
-            </div>
-            
             <audio id="audio-player" src="" loop></audio>
-            
             <div class="player-controls">
-                <button id="prev-song" class="control-btn"><i class="ph-fill ph-skip-back"></i></button>
+                <button id="prev-song" class="control-btn" style="background:none; border:none; color:#777;"><i class="ph-fill ph-skip-back"></i></button>
                 <button id="play-pause-button" class="play-btn">
                     <i id="play-icon" class="ph-fill ph-play"></i>
                 </button>
-                <button id="next-song" class="control-btn"><i class="ph-fill ph-skip-forward"></i></button>
+                <button id="next-song" class="control-btn" style="background:none; border:none; color:#777;"><i class="ph-fill ph-skip-forward"></i></button>
             </div>
-            <div class="volume-box">
-                <i class="ph-fill ph-speaker-low"></i>
-                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
-            </div>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" style="width:100%; accent-color:var(--gold-main); height:2px;">
         </div>
     </div>
 
     <div class="sparkles-container"></div>
 
-    <div class="container" style="opacity: 0;"> 
+    <div class="container"> 
         
         <header class="glam-header">
-            <h1 class="glam-title">Fabi</h1>
+            <h1 class="glam-title">Faby</h1>
             <p class="glam-subtitle">1502861959</p>
         </header>
 
@@ -67,110 +56,53 @@
 
         <div id="content-area">
 
-            <div id="home-section" class="content-section active-section">
-                
+            <div id="home-section" class="content-section">
                 <section class="bio-card">
                     <div class="avatar-border">
                         <img src="https://xatimg.com/image/nW55YBWRcnQW.jpg" alt="Fabi Avatar" class="main-avatar">
                     </div>
-                    <h2>Sobre mi</h2>
                     <p class="bio-text">Hola.</p>
                 </section>
 
                 <div class="divider-gold"><span>✦</span></div>
 
                 <section class="friends-showcase">
-                    <h2 class="section-title">Mis Amigos </h2>
+                    <h2 class="section-title">Mis Amigos</h2>
                     <div class="friends-grid-chic">
-                        <a href="https://xat.me/Jhon" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/MjeWd1SYnYh9.png" alt="Jhon">
-                            <span>Jhon</span>
-                        </a>
-                        <a href="https://xat.me/iLushoooooo1" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/1KdIw2uNwv1b.png" alt="Lusho">
-                            <span>Lusho</span>
-                        </a>
-                        <a href="https://xat.me/xLe0nelx25" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/nQGg9tDYy5Jk.jpg" alt="Leonel">
-                            <span>Leonel</span>
-                        </a>
-                        <a href="https://xat.me/Rayko" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/o6gySJoQm3bX.png" alt="Rayko">
-                            <span>Rayko</span>
-                        </a>
-                        <a href="https://xat.me/heis" target="_blank" class="friend-gem">
-                            <img src="https://i.imgur.com/rpKmWK2.png" alt="Rayko">
-                            <span>Heis</span>
-                        </a>
-                        
-                        <a href="https://xat.me/Majito2395" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/TO4iAUl9bmnp.png" alt="Majito">
-                            <span>Majito</span>
-                        </a>
-                        
-                        
-                        <a href="https://xat.me/Gaby" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/kE0XqQ4WiVSH.png" alt="Gaby">
-                            <span>Gaby</span>
-                        </a>
-                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-gem">
-                            <img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif" alt="Shelby">
-                            <span>Shelby</span>
-                        </a>
-                        <a href="https://xat.me/alberto2026" target="_blank" class="friend-gem">
-                            <img src="https://xatimg.com/image/OKKhYQrclWVE.jpg" alt="Alberto">
-                            <span>Alberto</span>
-                        </a>
-                        
-                         <a href="https://xat.me/Marv" target="_blank" class="friend-gem">
-                            <img src="https://i.ibb.co/5xtkQkTq/rappimrv.png" alt="Marvin">
-                            <span>Marvin</span>
-                        </a>
+                        <a href="https://xat.me/Jhon" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/MjeWd1SYnYh9.png"><span>Jhon</span></a>
+                        <a href="https://xat.me/iLushoooooo1" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/1KdIw2uNwv1b.png"><span>Lusho</span></a>
+                        <a href="https://xat.me/xLe0nelx25" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/nQGg9tDYy5Jk.jpg"><span>Leonel</span></a>
+                        <a href="https://xat.me/Rayko" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/o6gySJoQm3bX.png"><span>Rayko</span></a>
+                        <a href="https://xat.me/heis" target="_blank" class="friend-gem"><img src="https://i.imgur.com/rpKmWK2.png"><span>Heis</span></a>
+                        <a href="https://xat.me/Majito2395" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/TO4iAUl9bmnp.png"><span>Majito</span></a>
+                        <a href="https://xat.me/Gaby" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/kE0XqQ4WiVSH.png"><span>Gaby</span></a>
+                        <a href="https://xat.me/bardock2012" target="_blank" class="friend-gem"><img src="https://media3.giphy.com/media/v1.Y2lkPTUwZDk0NGRkNTRscW4xNmdnNGFzMmdpY25qZDVpbGNzdG5ta2Q2cG90YWtnYWlscSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HKfj7dT9wW0YX83FEA/100w.gif"><span>Shelby</span></a>
+                        <a href="https://xat.me/alberto2026" target="_blank" class="friend-gem"><img src="https://xatimg.com/image/OKKhYQrclWVE.jpg"><span>Alberto</span></a>
+                        <a href="https://xat.me/Marv" target="_blank" class="friend-gem"><img src="https://i.ibb.co/5xtkQkTq/rappimrv.png"><span>Marvin</span></a>
                     </div>
                 </section>
             </div>
 
             <div id="profile-section" class="content-section hidden">
                 <section class="chic-panel">
-                    <h2 class="section-title">Sobre Mí</h2>
-                    <ul class="glam-list">
-                        <li>
-                            <div class="list-icon"></div>
-                            <div class="list-content">
-                                <strong>Música Favorita</strong>
-                                <span>Rock y Metal</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-icon"></div>
-                            <div class="list-content">
-                                <strong>Frase Favorita</strong>
-                                <span>"Tenemos tantas cosas y tantas oportunidades que ya ni siquiera sabemos que nos importa."</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-icon"></div>
-                            <div class="list-content">
-                                <strong>Estado Actual</strong>
-                                <span>Ocupada siempre.</span>
-                            </div>
-                        </li>
+                    <ul class="glam-list" style="list-style:none; padding:0;">
+                        <li><strong>Música:</strong> <span>Rock y Metal</span></li>
+                        <li><strong>Frase:</strong> <span>"Tenemos tantas cosas y tantas oportunidades que ya ni siquiera sabemos que nos importa."</span></li>
+                        <li><strong>Estado:</strong> <span>Ocupada siempre.</span></li>
                     </ul>
                 </section>
             </div>
 
             <div id="gallery-section" class="content-section hidden">
-                <section class="chic-panel gallery-panel">
-                    <h2 class="section-title">Galería</h2>
-                    
+                <section class="chic-panel" style="width:100%; display:flex; flex-direction:column; align-items:center;">
+                    <h2 class="section-title" style="color:var(--gold-main); margin-bottom:10px;">Galería</h2>
                     <div class="glam-carousel">
                         <div class="carousel-track">
-                            <img src="https://xatimg.com/image/tKhOWquLIWnV.jpg" alt="Foto 1" class="active">
-                            <img src="https://xatimg.com/image/l1lKQBudgQyM.jpg" alt="Foto 2">
-                            <img src="https://xatimg.com/image/khkKIGuWO5Mc.jpg" alt="Foto 3">
-                            <img src="https://xatimg.com/image/B08y5KxSLntC.jpg" alt="Foto 4">
+                            <img src="https://xatimg.com/image/tKhOWquLIWnV.jpg" class="active">
+                            <img src="https://xatimg.com/image/l1lKQBudgQyM.jpg">
+                            <img src="https://xatimg.com/image/khkKIGuWO5Mc.jpg">
+                            <img src="https://xatimg.com/image/B08y5KxSLntC.jpg">
                         </div>
-                        
                         <button class="nav-arrow prev-arrow">❮</button>
                         <button class="nav-arrow next-arrow">❯</button>
                     </div>
@@ -182,10 +114,6 @@
             <p>DESIGNED BY <a href="https://xat.me/Rayko">RAYKO</a> © 2025</p>
         </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
